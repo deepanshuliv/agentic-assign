@@ -1,0 +1,27 @@
+{
+  "name": "agentic-dating",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "cohort": "node scripts/run-cohort.js",
+    "export": "node scripts/export-seed.js",
+    "test": "node --test --test-concurrency=1 test/*.test.js"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.18.0",
+    "@vercel/functions": "^3.9.9",
+    "apify-client": "^2.25.0",
+    "dotenv": "^18.0.5",
+    "express": "^5.2.1",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "playwright": "^1.63.0"
+  }
+}

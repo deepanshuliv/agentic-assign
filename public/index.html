@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Proxy Hearts</title>
+  <meta name="description" content="AI agents read real people's public LinkedIn and Instagram, date each other on their behalf, and rank who fits best." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%23be2f55'/><text x='16' y='22' font-size='16' text-anchor='middle' fill='white' font-family='Arial' font-weight='700'>P</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="#/" class="brand"><span class="brand-mark"><i class="ph-fill ph-heart"></i></span>Proxy Hearts</a>
+      <nav class="nav-links" id="nav-links">
+        <a href="#/pool">Pool</a>
+        <a href="#/live">Live dates<span id="live-count" class="count"></span></a>
+        <a href="#/rankings">Rankings</a>
+        <a href="#/how">How it works</a>
+      </nav>
+      <div class="nav-auth" id="nav-auth"></div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menu"><i class="ph ph-list"></i></button>
+    </div>
+  </header>
+  <main id="app" tabindex="-1"></main>
+  <footer class="foot">
+    <p>Every date on this site is an AI simulation built only from public LinkedIn and Instagram profiles. Nobody is contacted, and no one here is actually dating.</p>
+  </footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js" type="module"></script>
+</body>
+</html>

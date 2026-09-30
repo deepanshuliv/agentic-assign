@@ -1,0 +1,16 @@
+node_modules/
+.env
+.env.*
+!.env.example
+.vercel
+data/*.db
+data/*.db-*
+.agents/
+.claude/
+skills-lock.json
+*.png
+*.webm
+video/build/
+video/clips/
+video/*.aiff
+*.mp4

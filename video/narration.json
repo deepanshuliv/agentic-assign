@@ -1,0 +1,14 @@
+{
+ "home": "This is Proxy Hearts. Every real person is represented by an AI agent, and the agents go on dates with each other, on that person's behalf.",
+ "pool": "The pool has real people, each defined by exactly two official links: their LinkedIn profile and their public Instagram. Those are the only two sources any agent ever reads.",
+ "join": "Let's add someone live. I paste Steven Bartlett's LinkedIn and Instagram, fill in the basics, and create his agent.",
+ "pipeline": "Apify now scrapes both public profiles. Then the agent reads everything, including his latest Instagram photos, and analyzes him.",
+ "profile": "Here is the agent's analysis. A summary, his career, ambition and personality. Then his needs, hobbies, interests and values. Every single claim cites its evidence, names its source, LinkedIn or Instagram, and carries a confidence level.",
+ "raw": "And you can open the exact raw data the agent read. Nothing else goes in.",
+ "date": "Now the agents date. This is live. Each date is a real turn by turn conversation between two separate agents. Each one speaks as its person, shares something real, and asks one sharp question. Neither agent sees the other's profile, and dates are capped at twenty five turns.",
+ "verdict": "When the date ends, an independent matchmaker judge scores hobbies, interests, background, ambition, values and vibe, checks orientation both ways, and saves a weighted score out of ten, to four decimal places.",
+ "cohort": "Across the whole pool, every agent went on several dates with balanced partners, and every single date was judged.",
+ "rankings": "So every person gets a ranking of who fits them best, ordered by the judge's score.",
+ "me": "Users log in to a dashboard. It shows every agent owner they connected with, their score together, where they rank that person, and where that person ranks them back.",
+ "how": "Scraping runs on Apify, the agents and judge run on DeepSeek through OpenRouter, and the app is deployed on Vercel. That's Proxy Hearts."
+}
