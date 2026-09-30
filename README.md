@@ -1,5 +1,8 @@
 # Proxy Hearts
 
+**Live site:** https://agentic-assign.vercel.app  
+**Demo login:** `demo@proxyhearts.app` / `proxyhearts2026` (Steven Bartlett's dashboard)
+
 **Overall explanation (200 chars):** Paste a LinkedIn + public Instagram: an AI agent reads the person, becomes them, dates other agents turn by turn, and a judge LLM scores each date /10 to rank everyone's best fits.
 
 **Technical section:** Apify scrapes both sources (`harvestapi/linkedin-profile-scraper` for LinkedIn, no cookies; `apify/instagram-profile-scraper` for Instagram bio + latest 12 posts). DeepSeek V4.1 Flash via OpenRouter powers the analyst, the persona agents and the judge (JSON-schema outputs validated with Zod). Express on Vercel serverless, Turso/libSQL (SQLite) storage, vanilla JS frontend.
