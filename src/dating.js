@@ -166,7 +166,8 @@ async function judge(c, ua, ub, transcript, agentAId) {
 
 const CONV_LIST = `SELECT c.id, c.status, c.rank, c.max_turns, c.error, c.created_at, c.agent_a_id, c.agent_b_id,
     ua.id AS user_a_id, ua.name AS user_a_name, ub.id AS user_b_id, ub.name AS user_b_name,
-    pa.photo_url AS photo_a, pb.photo_url AS photo_b,
+    CASE WHEN pa.photo_url IS NULL THEN NULL ELSE '/api/photo/' || ua.id END AS photo_a,
+    CASE WHEN pb.photo_url IS NULL THEN NULL ELSE '/api/photo/' || ub.id END AS photo_b,
     (SELECT COUNT(*) FROM messages m WHERE m.conversation_id = c.id) AS turns
   FROM conversations c
   JOIN agents aa ON aa.id = c.agent_a_id JOIN users ua ON ua.id = aa.user_id LEFT JOIN profiles pa ON pa.user_id = ua.id

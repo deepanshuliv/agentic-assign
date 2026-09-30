@@ -1,7 +1,7 @@
 import { chromium } from "playwright";
 const base = process.env.BASE || "http://localhost:3000";
 const out = process.argv[2];
-const pages = [["home", "#/"], ["pool", "#/pool"], ["profile", "#/p/3"], ["join", "#/join"], ["how", "#/how"]];
+const pages = [["home", "#/"], ["pool", "#/pool"], ["profile", "#/p/27"], ["date", "#/c/425"], ["rankings", "#/rankings"], ["live", "#/live"], ["join", "#/join"], ["how", "#/how"]];
 const browser = await chromium.launch();
 for (const [vw, vh, tag, scheme] of [[1440, 900, "desk", "light"], [390, 844, "mob", "light"], [1440, 900, "dark", "dark"]]) {
   const ctx = await browser.newContext({ viewport: { width: vw, height: vh }, colorScheme: scheme, deviceScaleFactor: 1 });

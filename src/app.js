@@ -35,6 +35,14 @@ app.get("/api/stats", wrap(async (req, res) => {
 }));
 
 // ---- people ------------------------------------------------------------------------
+// Profile photos are stored as data URLs (CDN links expire); serve them as cacheable images.
+app.get("/api/photo/:id", wrap(async (req, res) => {
+  const row = await one("SELECT photo_url FROM profiles WHERE user_id = ?", [idParam(req.params.id)]);
+  const m = row?.photo_url?.match(/^data:([^;]+);base64,(.+)$/);
+  if (!m) throw new HttpError(404, "No photo");
+  res.set("Cache-Control", "public, max-age=86400, s-maxage=604800").type(m[1]).send(Buffer.from(m[2], "base64"));
+}));
+
 app.get("/api/users", wrap(async (req, res) => res.json(await listUsers())));
 
 app.get("/api/users/:id", wrap(async (req, res) => {
@@ -154,7 +162,7 @@ app.get("/api/rankings", wrap(async (req, res) => {
        SELECT a.user_id AS me, b.user_id AS other, c.id AS cid, c.rank FROM conversations c JOIN agents a ON a.id=c.agent_a_id JOIN agents b ON b.id=c.agent_b_id WHERE c.rank IS NOT NULL
        UNION ALL
        SELECT b.user_id, a.user_id, c.id, c.rank FROM conversations c JOIN agents a ON a.id=c.agent_a_id JOIN agents b ON b.id=c.agent_b_id WHERE c.rank IS NOT NULL)
-     SELECT p.me, p.other, p.cid, p.rank, u.name, pr.photo_url,
+     SELECT p.me, p.other, p.cid, p.rank, u.name, CASE WHEN pr.photo_url IS NULL THEN NULL ELSE '/api/photo/' || p.other END AS photo_url,
             ROW_NUMBER() OVER (PARTITION BY p.me ORDER BY p.rank DESC, p.other) AS position, COUNT(*) OVER (PARTITION BY p.me) AS total
      FROM pairs p JOIN users u ON u.id = p.other LEFT JOIN profiles pr ON pr.user_id = p.other`
   );

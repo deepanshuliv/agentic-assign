@@ -117,7 +117,7 @@ export const release = (table, id) => run(`UPDATE ${table} SET locked_until = 0 
 
 const USER_COLS = `u.id, u.name, u.age, u.sex, u.orientation, u.rank, u.status, u.error, u.linkedin_url, u.instagram_url,
   u.instagram_handle, u.linkedin_handle, u.agent_initiated, u.created_at, (u.email IS NOT NULL) AS has_account,
-  p.photo_url, p.headline, a.id AS agent_id`;
+  CASE WHEN p.photo_url IS NULL THEN NULL ELSE '/api/photo/' || u.id END AS photo_url, p.headline, a.id AS agent_id`;
 const USER_JOIN = `FROM users u LEFT JOIN profiles p ON p.user_id = u.id LEFT JOIN agents a ON a.user_id = u.id`;
 
 export async function getUser(id) {
@@ -133,7 +133,7 @@ export async function rankingFor(userId) {
   const rows = await all(
     `SELECT c.id AS conversation_id, c.rank AS score, c.status, c.judge_report,
             (SELECT COUNT(*) FROM messages m WHERE m.conversation_id = c.id) AS turns, c.max_turns,
-            o.id AS user_id, o.name, o.age, o.sex, o.rank AS pool_rank, p.photo_url, p.headline
+            o.id AS user_id, o.name, o.age, o.sex, o.rank AS pool_rank, CASE WHEN p.photo_url IS NULL THEN NULL ELSE '/api/photo/' || o.id END AS photo_url, p.headline
      FROM users me
      JOIN agents ma ON ma.user_id = me.id
      JOIN conversations c ON ma.id IN (c.agent_a_id, c.agent_b_id)
